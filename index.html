@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Automatic Puzzle</title>
+    <style media="screen">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        text-align: center;
+      }
+      .content h1 {
+        color: #1296DB;
+      }
+      .main_box {
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid red;
+      }
+      #disorganizeBtn, #startBtn, #stopBtn {
+        width: 150px;
+        height: 40px;
+        margin-top: 30px;
+        font-weight: 900;
+        color: #1296DB;
+        border-radius: 8px;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Automatic Puzzle</h1>
+      <div class="main_box">
+        <canvas id="myCanvas">
+          您的浏览器不支持canvas标签！
+        </canvas>
+      </div>
+      <button id="disorganizeBtn">DISORGANIZE</button>
+      <button id="startBtn">START</button>
+      <button id="stopBtn">STOP</button>
+    </div>
+    <script type="text/javascript" src="./js/automaticPuzzle.js"></script>
+    <script type="text/javascript">
+      window.onload = () => {
+        // canvas DOM node
+        const canvas = document.getElementById('myCanvas');
+        // init canvas
+        const puzzle = new automaticPuzzle({
+          // canvas DOM
+          canvas,
+          // 图片地址
+          imgUrl: './images/bridge.jpeg',
+          // 横切块数
+          across: 5,
+          // 竖切块数
+          vertical: 5
+        });
+
+        let disorganize = document.getElementById('disorganizeBtn');
+        // disorganize
+        disorganize.onclick = () => {
+          puzzle.puzzleDisorganize();
+        }
+
+        let start = document.getElementById('startBtn');
+        // start
+        start.onclick = () => {
+          // speed
+          if (!puzzle.puzzleStart(50)) alert('未打乱顺序，请先打乱！');
+        }
+
+        let stop = document.getElementById('stopBtn');
+        // stop
+        stop.onclick = () => {
+          if (!puzzle.puzzleStop()) alert('未开始还原，请开启还原！');
+        }
+
+      }
+    </script>
+  </body>
+</html>
