@@ -1,10 +1,8 @@
 # AutomaticPuzzle
 
-An auto-undo puzzle effect
-
 随机还原拼图（Canvas实现）
 
-在线浏览：https://goodluck333.github.io/AutomaticPuzzle/
+在线预览：https://goodluck333.github.io/AutomaticPuzzle/
 
 ### 主要功能：
 
@@ -58,9 +56,16 @@ An auto-undo puzzle effect
 >>
 >* 画canvas的核心已经解决了，然后循环画一整张的canvas就完成整面canvas;
 >>
+>* 按顺序循环可以画一整张的canvas图片，打乱顺序即可做出像拼图一样的效果;
+>>
+>> 可使用数组或对象的形式存储随机的图片切块坐标，本次使用的是对象形式，双重循环生成二维对象存储随机的图片切块坐标数组;
 >> 
+>> 生成的对象就是一个完整的一张随机图片的数据，对对象进行遍历，使用canvas画图功能将小图块一块块的画到canvas上，这样就完成了乱序图片功能;
+>> 
+>* 开始随机还原拼图，使用定时器生成新的乱序图片，如找到正确的图片位置将该位置状态置true，该位置为正确图片坐标，下次跳过参与生成新乱序图片;
+>> 
+>* 停止随机还原拼图，只需清除定时器;
 >>
->>
->>
+>#### 以上完成了其主要思路，谢谢提出好的建议！
 
-
+                                                                             By:GoodLuck333
